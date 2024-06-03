@@ -18,9 +18,9 @@ export class NestedOutletComponent implements OnInit, OnDestroy {
 
  ngOnInit(): void {
   this.users = this.formService.getUsers();
- this.subscription = this.formService.inputsAdded
- .subscribe((users : UserModel[]) => {
-  this.users = users;
+    this.subscription = this.formService.inputsAdded
+    .subscribe((users : UserModel[]) => {
+      this.users = users;
  })
  }
 
@@ -28,8 +28,8 @@ export class NestedOutletComponent implements OnInit, OnDestroy {
    this.subscription.unsubscribe()
  }
   
- onEditItem(index : number){
-    this.formService.startedEditing.next(index)
+ onAddUser(index : number) {
+  this.formService.startedEditing.next(index);
  }
 
 }

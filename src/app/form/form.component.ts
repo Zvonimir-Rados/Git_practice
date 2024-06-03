@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, viewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormService } from '../shared/form.service';
 import { UserModel } from '../user.model';
@@ -13,11 +13,10 @@ import { ViewChild } from '@angular/core';
 export class FormComponent implements OnInit, OnDestroy {
   @ViewChild('form', {static: true}) form: NgForm;
 
-
   subscription : Subscription
-  editMode = false
-  editedItemIndex: number;
-  editedItem: UserModel;
+  editMode = false;
+  editedUser : UserModel;
+  editedIndex : number;
  
   constructor(private formService : FormService){}
 
@@ -29,17 +28,16 @@ export class FormComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(): void {
-   this.subscription = this.formService.startedEditing
+  this.subscription = this.formService.startedEditing
     .subscribe(
       (index : number) => {
-      this.editMode = true;
-      this.editedItemIndex = index;
-      this.editedItem = this.formService.getUser(index);
-      this.form.setValue({
-        name: this.editedItem.name,
-        email: this.editedItem.email
-      })
-      console.log(index)
+        this.editMode = true;
+        this.editedUser = this.formService.getUser(index);
+        this.editedIndex = index;
+        this.form.setValue({
+        name: this.editedUser.name,
+        email: this.editedUser.email
+        })
     })
   }
 

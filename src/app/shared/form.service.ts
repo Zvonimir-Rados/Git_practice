@@ -16,11 +16,10 @@ export class FormService{
     this.users.push(input);
     this.inputsAdded.next(this.users.slice());
   }
-
+  
   getUser(index) {
     return this.users[index];
   }
-
   getUsers() {
     return this.users.slice();
   }
