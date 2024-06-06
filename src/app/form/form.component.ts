@@ -27,19 +27,18 @@ export class FormComponent implements OnInit, OnDestroy {
     form.resetForm();
   }
   
-  ngOnInit(): void {
-  this.subscription = this.formService.startedEditing
-    .subscribe(
-      (index : number) => {
-        this.editMode = true;
-        this.editedUser = this.formService.getUser(index);
-        this.editedIndex = index;
-        this.form.setValue({
-        name: this.editedUser.name,
-        email: this.editedUser.email
-        })
+ ngOnInit(): void {
+   this.subscription = this.formService.startedEditing
+   .subscribe((index: number) => {
+    this.editedIndex = index,
+    this.editMode = true,
+    this.editedUser = this.formService.getUser(index)
+    this.form.setValue({
+      name : this.editedUser.name,
+      email: this.editedUser.email
     })
-  }
+   })
+ }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
