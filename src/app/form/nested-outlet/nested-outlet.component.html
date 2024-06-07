@@ -1,0 +1,9 @@
+<ul>
+  <a
+    style="cursor: pointer"
+    (click)="onEditItem(i)"
+    *ngFor="let user of users; let i = index"
+  >
+    {{ user.name }} {{ user.email }}
+  </a>
+</ul>
